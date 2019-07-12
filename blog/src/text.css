@@ -1,0 +1,44 @@
+.mp0 {
+  padding: 5px 5px;
+  margin: 0px 0px;
+}
+label {
+  font-size: 18px;
+}
+.wrap {
+  width: 500px;
+  height: 100%;
+  margin: auto auto;
+}
+.wrap .title {
+  padding: 10px 5px;
+  margin: 10px 0px;
+  text-align: left;
+}
+.wrap .title .theme,
+.wrap .title .checkbox {
+  display: inline-block;
+  font-size: 16px;
+  padding: 10px 5px;
+  margin: 10px 0px;
+}
+.wrap .title .content {
+  text-align: center;
+}
+.wrap .title .content .blog-content-title {
+  text-align: left;
+  display: block;
+  margin-bottom: 10px;
+}
+.wrap .title .inp-title {
+  width: 200px;
+  height: 15px;
+  border-radius: 3%;
+}
+.wrap .title .box {
+  text-align: center;
+}
+.wrap .title .box .checkbox {
+  padding: 5px;
+  margin: 0px 0px 10px 0;
+}

@@ -1,0 +1,56 @@
+@center:text-align;
+.left(){
+    text-align: left;
+}
+.pd5(){
+      padding: 10px 5px; 
+      margin: 10px 0px;
+}
+.mten(@d){
+    margin:@d;
+}
+.mp0{
+    padding: 5px 5px; 
+    margin: 0px 0px;
+}
+    input{
+
+    }
+    label{
+        font-size: 18px;
+    }
+    .wrap{
+        width:500px;
+        height: 100%;
+        margin:auto auto;
+       .title{
+           .pd5();
+           .left;
+            .theme,.checkbox{
+                display: inline-block;
+                font-size: 16px;
+                .pd5();
+            }
+            .content{
+                    @{center}:center;
+                    .blog-content-title{
+                    text-align: left;
+                    display: block; 
+                    margin-bottom: 10px;
+                }
+            }
+            .inp-title{
+                width: 200px;
+                height:15px;
+                border-radius: 3%;
+            }
+            .box {
+                @{center}:center;
+                .checkbox{
+                    padding: 5px;
+                    .mten(0px 0px 10px 0);
+                }
+            }
+           
+        } 
+    }
