@@ -2,14 +2,20 @@
     <nav>
         <ul>
             <li>
+<<<<<<< HEAD
                 <router-link to='/blog/show' exact>博客</router-link>
                  <router-link to='/blog/add' exact>写博客</router-link>
+=======
+                <router-link to='/' exact>博客</router-link>
+                 <router-link to='/add' exact>写博客</router-link>
+>>>>>>> 72f934c8bd661a5e7996c4c8ed863d1f34a705c8
             </li>
         </ul>
     </nav>
 </template>
 <script>
 export default {
+<<<<<<< HEAD
     name:'blogHeader',
     data() {
         return {
@@ -17,6 +23,9 @@ export default {
             id:null,
         }
     },
+=======
+    name:'blogHeader'
+>>>>>>> 72f934c8bd661a5e7996c4c8ed863d1f34a705c8
 }
 </script>
 <style lang="less" scoped>

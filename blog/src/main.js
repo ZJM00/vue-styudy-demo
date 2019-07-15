@@ -31,9 +31,15 @@ Vue.directive("theme",{
 });
 
 //自定义过滤器
+<<<<<<< HEAD
 Vue.filter('to-uppercase',function(val){
   return val.toUpperCase();
 });
+=======
+// Vue.filter('to-uppercase',function(val){
+//   return val.toUpperCase();
+// });
+>>>>>>> 72f934c8bd661a5e7996c4c8ed863d1f34a705c8
 Vue.filter('sinppet',val=>{
   return val.slice(0,100) + '...';
 })

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../../vue.js"></script>
+    <title>Todo</title>
+    <style>
+        .der{
+            text-decoration: line-through;
+        }
+        .red{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div id="todo-app">
+        <div>
+            <button @click='allCompleted'>全部标记完成</button>
+            <input type="text" name="" id="" placeholder="添加todpo" v-model='newValue' @keyup.enter='addTodo'>
+        </div>
+        <ul v-for="t in filterTodo" :key="todo.id">
+            <li>
+                <span :class='{der: t.completed}' @dblclick='edit(t)'>{{t.title}}</span>
+               <button @click='dec(t)'>标记玩成</button>
+               <button @click='remove(t)'>删除</button>
+               <input type="text" :name='t.id' id="" placeholder="编辑 todo .." 
+                         v-if='t.finsh' v-model='editValue'  
+                       @keyup.enter='editorEnter(t)'
+                       @keyup.esc='cancel(t)' v-focus='true'>
+                                                              
+            </li>
+        </ul>
+
+        <div>
+            <span>剩余{{lastTodo}}项未完成 --- 筛选</span>
+            <span>
+                <button @click='todoOld="all"'>全部</button>
+                <button @click='todoOld="on"'>进行中</button>
+                <button @click='todoOld="todoCom"'>已完成</button>
+                <button @click='succ'>清楚已完成</button>
+                <button @click='allTodo'>清楚全部</button>
+            </span>
+        </div>
+        <p>tips:双击todo编辑，点击esc，取消编辑</p>
+    </div> -->
+<p></p>
+<p></p>
+    <div id="todo-app">
+        <div>
+            <button @click='allCompleted'>全部标记完成</button>
+            <input type="text" name="" id="" placeholder="添加todpo" v-model='newValue' @keyup.enter='addTodo'>
+        </div>
+        <ul>
+            <todoapp v-for="t in filterTodo" :key="t.id" :t="t"   @remove-todo="move"></todoapp>
+        </ul>
+    
+        <div>
+            <span>剩余{{lastTodo}}项未完成 --- 筛选</span>
+            <span>
+                <button @click='todoOld="all"'>全部</button>
+                <button @click='todoOld="on"'>进行中</button>
+                <button @click='todoOld="todoCom"'>已完成</button>
+                <button @click='succ'>清楚已完成</button>
+                <button @click='allTodo'>清楚全部</button>
+            </span>
+        </div>
+        <p>tips:双击todo编辑，点击esc，取消编辑</p>
+    </div>
+    <template id='todos'>
+            <li>
+                <span :class='{der: t.completed}' @dblclick='edit(t)'>{{t.title}}</span>
+                <button @click='dec(t)'>标记玩成</button>
+                <button @click='remove(t)'>删除</button>
+                <input type="text" :name='t.id' id="" placeholder="编辑 todo .." 
+                            v-if='t.finsh' v-model='editValue'  
+                        @keyup.enter='editorEnter(t)'
+                        @keyup.esc='cancel(t)' v-focus='true'>
+                                                                
+            </li>
+    </template>
+    <script src="../js/index.js"></script>
+    <script src="../js/compoent.js"></script>
+</body>
+</html>

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
  {
+=======
+{
+>>>>>>> 72f934c8bd661a5e7996c4c8ed863d1f34a705c8
   "presets": [
     ["env", {
       "modules": false,
