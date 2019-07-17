@@ -3,16 +3,11 @@
         <h2>博客总览</h2> 
         <input type="text" name="" id="" placeholder="搜索" v-model="search">
         <div class="single-blog" v-for='(blog,ind) in filterBlogs' :key="ind"  >
-<<<<<<< HEAD
+
             <router-link :to="{name:'singleBlog',params:{id:blog.id,blog:blog}}">
                 <h2 v-rainbow>{{blog.title | to-uppercase}}</h2>   
             </router-link>
-           
             <article>{{blog.content | sinppet}}</article>
-=======
-            <h2 v-rainbow>{{blog.title | to-uppercase}}</h2>
-            <article>{{blog.body | sinppet}}</article>
->>>>>>> 72f934c8bd661a5e7996c4c8ed863d1f34a705c8
         </div>
     </div>
 </template>
@@ -23,11 +18,8 @@ export default {
         return {
             blogs:[],
             search:"",
-<<<<<<< HEAD
             id:null,
             blog:{}
-=======
->>>>>>> 72f934c8bd661a5e7996c4c8ed863d1f34a705c8
         }
     },
     created(){
@@ -38,7 +30,7 @@ export default {
         //         console.log(this.blogs);
         //         }
         // );
-<<<<<<< HEAD
+
 
         //this.$ajax.get("../../static/posts.json")   //static文件夹是vue-cli向外暴露点的静态文件夹，只能放在这
             // .then(data=>{
@@ -49,7 +41,7 @@ export default {
         //
 
         // 使用免费的firebase云端数据库，读取数据
-         this.$ajax.get("https://blog-2f8f5.firebaseio.com/posts.json") 
+        this.$ajax.get("/posts.json") 
             .then(data=>{
                 //console.log(data.json()) data.json()是返回一个promise对象，但是报错，不知道为什么
                 let d =  data.data;
@@ -59,16 +51,15 @@ export default {
                 }
                 console.log(this.blogs)
                 // this.blogs = data.config.data.content.slice(0,10); 
-            }
-=======
-         this.$ajax.get("../../static/posts.json")  //static文件夹是vue-cli向外暴露点的静态文件夹，只能放在这
-            .then(data=>{
+            });
+
+        // this.$ajax.get("../../static/posts.json")  //static文件夹是vue-cli向外暴露点的静态文件夹，只能放在这
+        //     .then(data=>{
                
-                this.blogs = data.data.slice(0,10); 
-                console.log(this.blogs);
-                }
->>>>>>> 72f934c8bd661a5e7996c4c8ed863d1f34a705c8
-        );
+        //         this.blogs = data.data.slice(0,10); 
+        //         console.log(this.blogs);
+        //         }
+        // );
     },
     computed: {
         filterBlogs(){
@@ -96,16 +87,11 @@ export default {
 #show-blogs{
     max-width: 800px;
     margin:0 auto;
-<<<<<<< HEAD
     text-align: center;  
     padding: 20px;
-    .single-blog{
-       padding: 20px;
-=======
     text-align: center;
     .single-blog{
         padding: 20px;
->>>>>>> 72f934c8bd661a5e7996c4c8ed863d1f34a705c8
         margin: 20px 0;
         box-sizing: border-box;
         background: #eee;
@@ -113,7 +99,6 @@ export default {
             text-align: left;
         }
     }
-<<<<<<< HEAD
     a{
         text-decoration: none;
     }
@@ -122,8 +107,5 @@ export default {
         padding: 8px;
         box-sizing: border-box;
     }
-=======
->>>>>>> 72f934c8bd661a5e7996c4c8ed863d1f34a705c8
 }
-    
 </style>
