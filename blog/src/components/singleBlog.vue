@@ -62,11 +62,14 @@ export default {
         text-align: left;
     }
     ul{
+        width: 200px;
         list-style: none; 
         display: inline-block;
-       padding: 5px 8px;
+        padding: 5px 8px;
         li{
-           
+            display: inline-block;
+            width: auto;
+            padding: 5px 8px;
         }
     }
 }

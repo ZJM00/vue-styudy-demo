@@ -1,65 +1,13 @@
 <template>
-<<<<<<< HEAD
    <blank-blog :blog='blog' :id='id'  :msg='msg' :ajax='"add"'></blank-blog>
-   
 </template>
+
 <script>
-import blankBlog from '@/components/blankBlog.vue'
-=======
-    <div class="wrap"> 
-        <h2>{{blog.msg}}</h2>
-        <div class="title">
-            <form action="" v-if='!sublimted'>
-                <div>
-                    <label class="theme">主题：</label>
-                    <input type="text" placeholder="博客主题" class='inp-title' v-model="blog.title">
-                </div>
-                <div class="content">
-                    <label class="blog-content-title">博客内容</label>
-                    <textarea name="" id="" cols="70" rows="10" v-model='blog.content'></textarea>
-                </div>
-                <span>分类：</span>
-                <div class="box">
-                     <div class="checkbox" v-for='i in blog.checkbox' :key="i"   >
-                        <label >{{i}}</label>
-                        <input type="checkbox" name="" id="" :value='i' v-model='blog.categories'>
-                    </div>
-                </div>
-               
-                <div class="authors">
-                    <label for="">作者</label>
-                    <select  v-model="blog.author" >
-                        <option  :value="author" v-for='(author,ind) in blog.authors' :key='ind'
-                        :selected="ind==0?true:false">{{author}}</option>
-                    </select>
-                </div>
-            </form>
-            <div v-if='sublimted' class="suc">
-                <h2>您的博客添加成功</h2>
-            </div>
-           <div class="preview">
-               <h3>博客总览</h3>
-               <p>博客标题：{{blog.title}}</p>
-               <p>博客内容：{{blog.content}}</p> 
-               <ul>博客类别：
-                   <li v-for='(category,id) in blog.categories' :key='id'>
-                       {{category}}
-                   </li>
-               </ul>
-               <p>作者：{{blog.author}}</p>
-               <button @click.prevent='post'>{{blog.msg}}</button>
-           </div>
-        </div>
-    </div>
-   
-</template>
-<script>
->>>>>>> 72f934c8bd661a5e7996c4c8ed863d1f34a705c8
 // post和get数据的网址
 //https://jsonplaceholder.typicode.com/
 //https://jsonplaceholder.typicode.com/posts
+import blankBlog from '@/components/blankBlog.vue'
 export default {
-<<<<<<< HEAD
     name:'add-blog', 
     components:{
         blankBlog,
@@ -75,40 +23,6 @@ export default {
             },
             id:""
         }
-    },
-}
-</script>
-<style lang="less" scoped>
-=======
-    name:'add-blog',
-    data(){
-        return {
-            blog:{
-                msg:'添加博客',
-                title:"",
-                inpTitle:'',
-                content:"",
-                checkbox:["vue.js","Node.js","Angular.js","Rect.js"],
-                categories:[],
-                author:"",
-                authors:["Hemiah","hemty","honey"]
-            },
-            sublimted:false,
-
-        }
-    },
-    methods:{
-        post(){
-            this.$ajax.post("https://jsonplaceholder.typicode.com/posts",
-                {
-                    title:this.blog.title,
-                    body:this.blog.content,
-                    userId:1
-            }).then(data=>{
-                console.log(data);
-                this.sublimted = true;
-            });
-        },
     },
 }
 </script>
@@ -131,9 +45,6 @@ export default {
     padding: 5px 5px; 
     margin: 0px 0px;
 }
-    input{
-
-    }
     label{
         font-size: 18px;
     }
@@ -206,6 +117,4 @@ export default {
            
         } 
     }
-    
->>>>>>> 72f934c8bd661a5e7996c4c8ed863d1f34a705c8
 </style>
