@@ -6,7 +6,7 @@ import store from './store'
 import axios from 'axios'
 Vue.prototype.$ajax = axios;
 axios.defaults.headers.post["Content-type"]="application/json";
-
+axios.defaults.baseURL = 'http://www.liulongbin.top:3005/api';
 //引入移动端事件
 import touch from "vue-touch"
 Vue.use(touch);
@@ -23,11 +23,15 @@ Vue.use(touch);
 import './ui.js'
 Vue.config.productionTip = false;
 
+//缩略图插件
+import VuePreview from 'vue-preview';
+Vue.use(VuePreview);
 
 Vue.filter(
   'time',val=>{
-    let t = new Date(val);
-    return t.toLocaleString();
+    let date = new Date(val);
+    return date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds(); 
+    //return date.toLocaleString(); 手机浏览器不支持，不能解析到需要的时间
   });
 new Vue({
   router,

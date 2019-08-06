@@ -9,7 +9,7 @@
         <hr>
         <div v-html='info.content' class="content">
         </div>
-        <comment></comment>
+        <comment :arrId='id'></comment>
     </div>
 </template>
 <script>
@@ -24,7 +24,6 @@ export default {
     },
     created(){
         this.id = this.$route.params.id;
-         console.log(this.id)
         fetch( `http://www.liulongbin.top:3005/api/getnew/${this.id}`).then(data=>{
             return data.json();
         }).then(data=>{

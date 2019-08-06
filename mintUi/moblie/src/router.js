@@ -11,6 +11,10 @@ import search from './components/tabbar/search.vue'
 
 import newslist from './components/home/newList.vue'
 import news from './components/home/newsInfo.vue'
+import photolist from './components/photo/photolist.vue'
+import photoComment from './components/photo/photoComment.vue'
+
+import goodsList from "./components/goodsList/goodsList.vue"
 export default new Router({
   routes: [
     {
@@ -32,6 +36,21 @@ export default new Router({
       path:'/home/newsList/:id',
       component:news,
       name:"newsInfo"
+    },
+    {
+      path:'/home/photolist',
+      component:photolist,
+      name:"photolist"
+    },
+    {
+      path:'/home/photolist/:id',
+      component: photoComment,
+      name:"photoComment"
+    },
+    {
+      path:'/home/goodList',
+      component: goodsList,
+      name:"goodsList"
     },
     {
       path:'/shop',

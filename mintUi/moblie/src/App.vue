@@ -21,13 +21,15 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+
 }
 #nav {
   padding: 30px;
   a {
     font-weight: bold;
     color: #2c3e50;
-    &.router-link-exact-active {
+    &:router-link-exact-active {
       color: #42b983;
     }
   }
@@ -35,9 +37,18 @@ export default {
 *{
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
 }
+a{
+  text-decoration: none;
+  outline: none;
+}
+// a:active{
+//   color: #000;
+//   background: transparent;
+// }
 .v-enter{
-   opacity: 0;
+  opacity: 0;
   transform: translateX(100%);
 }
 .v-leave-to{

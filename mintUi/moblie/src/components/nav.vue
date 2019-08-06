@@ -66,6 +66,9 @@ export default {
 
 </script>
 <style lang="less">
+#nav-tabbar{
+    overflow: hidden;
+}
 .but{
     &:active{
         opacity:0.7 !important;
