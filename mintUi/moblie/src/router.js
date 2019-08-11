@@ -15,6 +15,7 @@ import photolist from './components/photo/photolist.vue'
 import photoComment from './components/photo/photoComment.vue'
 
 import goodsList from "./components/goodsList/goodsList.vue"
+import goodInfo from "./components/goodsList/goodInfo.vue"
 export default new Router({
   routes: [
     {
@@ -51,6 +52,11 @@ export default new Router({
       path:'/home/goodList',
       component: goodsList,
       name:"goodsList"
+    },
+    {
+      path:'/home/goodList/:id',
+      component: goodInfo,
+      name:"goodInfo"
     },
     {
       path:'/shop',

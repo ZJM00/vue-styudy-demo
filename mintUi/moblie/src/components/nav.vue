@@ -1,16 +1,16 @@
 <template>
     <div id='nav-tabbar'>
         <mt-header fixed title='mint-ui-demo'>
-            <mt-button icon="back" slot="left" class='but'>返回</mt-button>
+            <mt-button icon="back" slot="left" class='but' @click='back'>返回</mt-button>
         </mt-header>
-        <mt-tabbar v-model='selected' fixed>
+        <mt-tabbar v-model='selected' fixed id='tabbar'>
             <mt-tab-item :id="item.id" v-for="(item, index) in tabbar" 
                 :key='item.id'  :class='item.changeImg?"is-selected":""'
                 @click.native='change(index)'> 
                 <img slot="icon" :src= "require('../assets/'+ item.id+'2'+'.png')" v-show='item.changeImg'>
                 <img slot="icon" :src= "require('../assets/'+ item.id+'.png')" v-show='!item.changeImg'>
                 <span>
-                    <span class="iconfont icon-search min-badge" v-if='item.dabge'>{{count}}</span>
+                    <span class="iconfont icon-search min-badge" v-if='item.dabge'>{{allCount}}</span>
                      {{item.id}}
                 </span>
               
@@ -28,11 +28,12 @@ export default {
             tabbar:[
                 {id:"首页",changeImg:true,dabge:false,routLink:'/home',title:'home'},
                 {id:"会员",changeImg:false,dabge:false,routLink:'/member',title:'member'},
-                {id:"购物车",changeImg:false,dabge:false,routLink:'/shop',title:'shop'},
+                {id:"购物车",changeImg:false,dabge:false,routLink:'/shop',title:'shop',},
                 {id:"搜索",changeImg:false,dabge:false,routLink:'/search',title:'search'},
             ],
             selected:"",
-            count:'',
+            count:1,
+            once:true,
         }
     },
     created(){
@@ -52,14 +53,32 @@ export default {
                     e.changeImg = false;
                 }
             });
+        },
+        back(){
+            this.$router.go(-1);
+        },
+        judge(c){
+            if(parseInt(c) > 0){
+                this.tabbar[2].dabge = true;
+            }else{
+                this.tabbar[2].dabge = false;
+            }
+        }
+    },
+    computed:{
+        allCount(){
+            return this.$store.getters.getAllCount;
         }
     },
     watch:{
-         count(){
-            if(parseInt(this.count) > 0){
-                this.tabbar[2].dabge = true;
+        allCount(){
+            if(this.once){
+                 let c = this.$store.getters.getAllCount;
+                 this.judge(c);
+                 this.once = false;
             }
-         }
+            
+        }
     }
   
 }
@@ -103,6 +122,9 @@ export default {
                     color: #fff; 
                     background: rgb(235, 34, 34); 
                     font-size: 12px;
+                    height: 0.8rem;
+                    width:0.8rem;
+                    text-align: center;
                 }
             }
         }

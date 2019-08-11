@@ -73,11 +73,15 @@ export default {
 </script>
 <style lang="less" scoped>
 .comment{
+    hr{
+        border: none;
+        margin:0.3rem 0;
+    }
     textarea{
         width:99%;
         height: 10rem;
         &:focus{
-             outline: none;
+            outline: none;
             border-color: #2453d3d7;
             box-shadow: 1px 2px 8px 1px #999 inset;
         }

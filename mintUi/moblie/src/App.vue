@@ -24,6 +24,13 @@ export default {
   overflow: hidden;
 
 }
+button{
+  outline: none;
+  border:none;
+}
+input{
+  outline-color:#969fdaab;
+}
 #nav {
   padding: 30px;
   a {

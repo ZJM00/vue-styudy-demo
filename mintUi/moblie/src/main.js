@@ -5,8 +5,10 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 Vue.prototype.$ajax = axios;
+let baseUrl = 'http://www.liulongbin.top:3005/api';
+Vue.prototype.baseUrl = baseUrl;
 axios.defaults.headers.post["Content-type"]="application/json";
-axios.defaults.baseURL = 'http://www.liulongbin.top:3005/api';
+axios.defaults.baseURL =  "http://www.liulongbin.top:3005/api";
 //引入移动端事件
 import touch from "vue-touch"
 Vue.use(touch);
@@ -33,6 +35,7 @@ Vue.filter(
     return date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds(); 
     //return date.toLocaleString(); 手机浏览器不支持，不能解析到需要的时间
   });
+
 new Vue({
   router,
   store,
