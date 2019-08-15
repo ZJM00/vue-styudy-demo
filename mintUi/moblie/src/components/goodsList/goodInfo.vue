@@ -21,7 +21,7 @@
                         <input type="number" value="1"  v-model='count' @input='getNum($event)' 
                         @blur='blur' :max='parseInt(info.stock_quantity)' min=1>
                         <button @touchstart='count<60?++count:60'>+</button> -->
-                        <numbox :max=parseInt(info.stock_quantity) @getCarCount='carCount'></numbox>
+                        <numbox :max=parseInt(info.stock_quantity) @getCarCount='carCount' :emit="true"></numbox>
                         <transition @before-enter='beforeEnter'  @enter='enter' @after-enter='afterEnter'>
                             <div class="ball" v-if='ballFlag' ref='ball'></div>
                         </transition>
@@ -141,7 +141,8 @@ export default {
                 id:this.id,
                 count:this.carNum,
                 price:this.info.sell_price,
-                selected:true,
+                maxNum:parseInt(this.info.stock_quantity),
+                select:false,
             };
             this.$store.commit("getCount",goodInfo );
 

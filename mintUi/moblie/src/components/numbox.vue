@@ -1,9 +1,8 @@
 <template>
     <div>
-          <div class='flash'>
+          <div class='flash'  >
             <button @touchstart='getCount(true)'>&minus;</button>
-            <input type="number" value="1"  v-model='count' @input='getNum($event)' 
-            @blur='blur'>
+            <input type="text"  v-model='count' @input='getNum($event)'  @blur='blur'>
             <button @touchstart='getCount(false)'>+</button>
         </div>
     </div>
@@ -16,10 +15,29 @@ export default {
             count:1,
         }
     },
+    created(){
+        this.count = this.num;
+    },
     props:{
         max:{
             type:Number,
             required:0,
+            //default:1000,
+        },
+        num:{
+            type:Number,
+            required:0,
+            default:1,
+        },
+        emit:{   //是否发送 $emit
+            type:Boolean,
+            required:0,
+            
+        },
+        carId:{
+            type:Number,
+            required:false,
+            default:0,
         }
     },
     methods:{
@@ -28,25 +46,40 @@ export default {
                 this.count=this.count.replace(/\D/g,'');
             }
             if(parseInt(this.count) > this.max){
-                this.count = 60;
-                this.$emit("getCarCount",this.count);
+                this.count = this.max;
+                this.sendEmit();
             }
-            this.$emit("getCarCount",this.count);
-
+            this.sendEmit();
+            this.changeCount();
         },
         blur(){
-            if( this.count == ""){
-                 this.count = 1;
+            if(this.count == ""){
+                this.count = 1;
+            }else{
+                this.sendEmit();
             }
+            
         },
         getCount(flag){
             if(flag){
                 this.count = this.count>1?--this.count:1;
-                this.$emit("getCarCount",this.count);
+                this.sendEmit();
             }else{
-                 this.count = this.count<60?++this.count:this.max;
-                 this.$emit("getCarCount",this.count);
+                this.count = this.count<60?++this.count:this.max;
+                this.sendEmit();
             }
+            this.changeCount();
+        },
+        sendEmit(){
+            if(this.emit){
+                this.$emit("getCarCount",this.count);
+            }
+        },
+        changeCount(){
+            if(!this.emit){
+                this.$store.commit("updateCount",{id:this.carId,count:this.count})
+            }
+          
         }
     },
 
@@ -54,28 +87,34 @@ export default {
 </script>
 <style lang="less" scoped>
 .flash{
+    font-size: 16px;
     display: inline-block;
     border: 1px solid rgba(0,0,0,0.2);
     position: relative;
     input{
-        width: 1.3rem;
-        height: 0.8rem;
-        padding: 0.4rem 0.7rem;
+        width: 1.5em;
+        height: 0.8em;
+        padding: 0.4em 0.7em;
         border:none;
         text-align: center;
-        letter-spacing: 0.07rem;
+        letter-spacing: 0.07em;
     }
     button{
         border:none;
-        width: 2.5rem;
-        height:1.9rem;
-        padding: 0.5rem 0;
-        font-size: 16px;
+        width: 2.5em;
+        height:1.9em;
+        padding: 0.5em 0;
+        font-size: 1em;
         background-color: #dcdcdc4d;
-        line-height: 0.8rem;
+        line-height: 0.8em;
         &:active{
             background-color:  #dcdcdc;
         }
     }
 }
+    @media (max-width:410px) {
+        .flash{
+           font-size: 12px;
+        }
+    }
 </style>

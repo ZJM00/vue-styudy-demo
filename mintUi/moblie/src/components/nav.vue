@@ -1,7 +1,7 @@
 <template>
     <div id='nav-tabbar'>
         <mt-header fixed title='mint-ui-demo'>
-            <mt-button icon="back" slot="left" class='but' @click='back'>返回</mt-button>
+            <mt-button icon="back" slot="left" class='but' @click='back' v-if='flag'>返回</mt-button>
         </mt-header>
         <mt-tabbar v-model='selected' fixed id='tabbar'>
             <mt-tab-item :id="item.id" v-for="(item, index) in tabbar" 
@@ -34,6 +34,7 @@ export default {
             selected:"",
             count:1,
             once:true,
+            flag:false,
         }
     },
     created(){
@@ -43,6 +44,9 @@ export default {
                 this.change(i);
             }
         }
+        this.getStore();
+        this.judge(this.count);
+         this.getFlag();
     },
     methods:{
         change(id){
@@ -63,11 +67,18 @@ export default {
             }else{
                 this.tabbar[2].dabge = false;
             }
+        },
+        getStore(){
+            this.count = this.$store.getters.getAllCount;
+        },
+        getFlag(){
+            this.flag = this.$route.path == '/home'?false:true;
         }
     },
     computed:{
         allCount(){
-            return this.$store.getters.getAllCount;
+            this.count = this.$store.getters.getAllCount;
+            return this.count;
         }
     },
     watch:{
@@ -78,7 +89,10 @@ export default {
                  this.once = false;
             }
             
-        }
+        },
+        "$route.path":function(newVal){
+            this.getFlag();
+        },
     }
   
 }

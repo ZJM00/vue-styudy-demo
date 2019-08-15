@@ -35,7 +35,6 @@ Vue.filter(
     return date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds(); 
     //return date.toLocaleString(); 手机浏览器不支持，不能解析到需要的时间
   });
-
 new Vue({
   router,
   store,
