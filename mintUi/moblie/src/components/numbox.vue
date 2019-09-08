@@ -2,7 +2,7 @@
     <div>
           <div class='flash'  >
             <button @touchstart='getCount(true)'>&minus;</button>
-            <input type="text"  v-model='count' @input='getNum($event)'  @blur='blur'>
+            <input type="number"  v-model='count' @input='getNum($event)'  @blur='blur'>
             <button @touchstart='getCount(false)'>+</button>
         </div>
     </div>
