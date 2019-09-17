@@ -56,7 +56,14 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 #### 3.1 头部的组件 head.vue
 #### 3.2 引入 iconfont 图标
- + （1）在 [iconfont.cn](https://www.iconfont.cn) 网站创建自己的项目，选择相应的图片添加入库，在我的项目中下载直本地。除了 demo 这三个文件不要，其他的 在 assets 下建立 iconfont 文件，放入就行。最后还要在修改 iconfont.css的路径，和 在 main.js 中引入 iconfont.css。
- + （2）引用图标 ： 如 ```<span class="iconfont">&#xe624;</span>```，类名为 iconfont， 在我的项目中选择图片可以复制代码，填入就行。
+ + (1)在 [iconfont.cn](https://www.iconfont.cn) 网站创建自己的项目，选择相应的图片添加入库，在我的项目中下载直本地。除了 demo 这三个文件不要，其他的 在 assets 下建立 iconfont 文件，放入就行。最后还要在修改 iconfont.css的路径，和 在 main.js 中引入 iconfont.css。
+ + (2)图标 ： 如 ```<span class="iconfont">&#xe624;</span>```，类名为 iconfont， 在我的项目中选择图片可以复制代码，填入就行。
  + (3) 学习使用 icon的三种方式
+### 3.3 创建 index-swiper分支，安装 vue-awesome-swiper 的 轮播插件，在main.js中引入
+```
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+// require styles
+import 'swiper/dist/css/swiper.css'
+Vue.use(VueAwesomeSwiper, /* { default global options } */)
+```
 

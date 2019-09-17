@@ -14,7 +14,7 @@
 </template>
 <script>
 export default {
-    name:"top"
+    name:"homeHead",
 }
 </script>
 <style lang="less" scope>
@@ -23,7 +23,7 @@ export default {
 }
     .header{
         display: flex;
-        position: fixed;
+        //position: fixed;
         top:0;
         height: 2.15rem;
         background-color: #00bcd4;

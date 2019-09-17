@@ -1,19 +1,15 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/> -->
-    <top></top>
+   
+     <view-home></view-home>
   </div>
 </template>
 <script>
-import top from "./components/home/head.vue"
+import viewHome from "@/views/Home.vue"
 export default {
   name:'App',
   components:{
-    top,
+     viewHome,
   }
 }
 </script>

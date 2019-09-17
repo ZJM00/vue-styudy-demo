@@ -15,6 +15,12 @@ import "./assets/style/border.css"
 import fastClick from 'fastclick'
 fastClick.attach(document.body);
 
+// vue-awesome-swiper插件，
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+// require styles
+import 'swiper/dist/css/swiper.css'
+
+Vue.use(VueAwesomeSwiper, /* { default global options } */)
 
 
 Vue.config.productionTip = false
