@@ -3,7 +3,7 @@
         <ul>
             <li>
                 <router-link to='/blog/show' exact>博客</router-link>
-                 <router-link to='/blog/add' exact>写博客</router-link>
+                <router-link to='/blog/add' exact>写博客</router-link>
             </li>
         </ul>
     </nav>
