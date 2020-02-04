@@ -39,6 +39,24 @@ const routes = [
           'upperLevel':'用户管理',
           'title': '用户列表'
         }
+      },
+      {
+        path:'rights',
+        name: "rights",
+        component: () => import("../components/Rights.vue"),
+        meta: {
+          'upperLevel':'权限管理',
+          'title': '权限列表'
+        }
+      },
+      {
+        path:'roles',
+        name: "roles",
+        component: () => import("../components/Roles.vue"),
+        meta: {
+          'upperLevel':'权限管理',
+          'title': '角色列表'
+        }
       }
     ]
   }

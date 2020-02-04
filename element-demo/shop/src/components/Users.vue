@@ -16,6 +16,7 @@
             </div>
 
             <el-table  :data=" userList" border  style="width: 100%" margTop=20px>
+                 <el-table-column type="index"></el-table-column>
                 <el-table-column prop="username" label="姓名" width="180">
                 </el-table-column>
                 <el-table-column  prop="email" label="邮箱" width="180">
@@ -46,7 +47,7 @@
 
                         <!-- 分配角色 -->
                         <el-tooltip class="item" effect="dark" content="分配角色" placement="top" :enterable='false'>
-                           <el-button type="warning" icon="el-icon-setting" size='mini'></el-button>
+                           <el-button type="warning" icon="el-icon-setting" size='mini' @click="setRole(editUser.row)"></el-button>
                         </el-tooltip>
                     </template>
                 </el-table-column>
@@ -91,7 +92,7 @@
                 </span>
             </el-dialog>
 
-              <!-- 修改用户对话框 -->
+            <!-- 修改用户对话框 -->
             <el-dialog
                 title="修改用户信息"
                 :visible.sync="showEditDialog"
@@ -110,6 +111,51 @@
                 <span slot="footer" class="dialog-footer">
                     <el-button @click="showEditDialog = false">取 消</el-button>
                     <el-button type="primary" @click="editUser">确 定</el-button>
+                </span>
+            </el-dialog>
+
+            <!-- 分配角色对话框 -->
+            <el-dialog
+                title="分配角色"
+                :visible.sync="showEditDialog"
+                width="30%">
+                <el-form :model="editForm" :rules="formRules" ref="editRef" label-width="100px" >
+                    <el-form-item label="用户名">
+                        <el-input v-model="editForm.username" :disabled="true"></el-input>
+                    </el-form-item>
+                    <el-form-item label="邮箱" prop="email">
+                        <el-input v-model="editForm.email"></el-input>
+                    </el-form-item>
+                     <el-form-item label="手机" prop="mobile">
+                        <el-input v-model="editForm.mobile"></el-input>
+                    </el-form-item>
+                </el-form>
+                <span slot="footer" class="dialog-footer">
+                    <el-button @click="showEditDialog = false">取 消</el-button>
+                    <el-button type="primary" @click="editUser">确 定</el-button>
+                </span>
+            </el-dialog>
+
+            <!-- 分配角色对话框 -->
+            <el-dialog
+                title="分配角色"
+                :visible.sync="showSetRoles"
+                width="23%">
+                <div class="set-role">
+                    <p><span>当前用户: </span>{{ currentInfo.username}}</p>
+                    <p><span>当前分配的角色: </span>{{ currentInfo.rolename}}</p>
+                    <p>  
+                        <span>分配新角色: </span>
+                        <el-select v-model=" currentRole" placeholder="请选择" style="width:160px;">
+                            <el-option  v-for="item in selectRoles" :key="item.id" :label="item.roleName" :value='item.id'>
+                            </el-option>
+                        </el-select>
+                    </p>
+                   
+                </div>
+                <span slot="footer" class="dialog-footer">
+                    <el-button @click="showSetRoles = false">取 消</el-button>
+                    <el-button type="primary" @click="allocation">确 定</el-button>
                 </span>
             </el-dialog>
         </el-card>
@@ -184,11 +230,21 @@ export default {
                 username: '',
                 email: '',
                 mobile: '',
-            }
+            },
+            // 分配角色
+            showSetRoles: false,
+            currentInfo: {},
+            currentRole: '',
         }
+    }, 
+    computed: {
+        selectRoles: function(){
+            return this.$store.state.roleList.data;
+        },
     },
     created() {
         this.getUsers();
+        //this.selectRoles = this.$store.state.roleList.data;
     },
     methods: {
         async getUsers(){
@@ -313,6 +369,31 @@ export default {
                 });          
             });
         },
+        // 分配角色
+        setRole(row){
+            this.currentInfo = {
+                id: row.id,
+                username: row.username,
+                rolename: row.role_name,
+            };
+            this.showSetRoles = true;
+
+        },
+        async allocation(){
+            if(!this.currentRole) {
+                this.showSetRoles = false;
+                return;
+            }
+            let {data:res} = await this.$http.put(`users/${this.currentInfo.id}/role`,{rid:this.currentRole});
+            console.log(res)
+            if(res.meta.status != 200) return this.$message.error('分配角色失败');
+            this.$message.success('分配角色成功');
+            this.currentRole = '';
+            this.getUsers();
+            this.showSetRoles = false;
+
+
+        }
         
 
 
@@ -327,6 +408,17 @@ export default {
     }
     .block{
         margin-top: 15px;
+    }
+    .set-role{
+        text-align: left;
+        p{
+            padding: 10px;
+            font-size: 15px;
+            font-weight: 500;
+            span{
+                padding-right: 10px;
+            }
+        }
     }
   }
 </style>

@@ -47,6 +47,7 @@ export default {
     created() {
        this.getMenuList();
        this.savePath((this.$route.path).replace(this.currentRouter,''));
+       this.getRoles();
     },
     data(){
         return {
@@ -74,6 +75,10 @@ export default {
         savePath(path,it,i){
             window.sessionStorage.setItem("activePath",path);
             this.isActiveRouter = path;
+        },
+         //获取权限
+        getRoles() {
+           this.$store.dispatch('getRoles');
         }
     },
     watch: {
