@@ -26,7 +26,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 // axios 的 默认url
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
-Vue.prototype. $http= axios;
+Vue.prototype.$http= axios;
 
 
 
@@ -37,11 +37,10 @@ axios.interceptors.request.use( config => {
   config.headers.Authorization = window.sessionStorage.getItem("token")
   // 最后必须return config
   return config;
-},
-  err => {
+},err => {
     return Promise.reject(err)
   }
-)
+);
 
 new Vue({
   router,
