@@ -34,7 +34,6 @@ export default {
     methods: {
         async getList() {
             let {data: res} = await this.$http.get(`rights/list`);
-            console.log(res)
             this.list = res.data;
         }
     },

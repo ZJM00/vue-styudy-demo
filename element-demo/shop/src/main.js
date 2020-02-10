@@ -24,14 +24,29 @@ return routerPush.call(this, location).catch(error=> error)
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
+import { Message } from 'element-ui';
+Vue.prototype.$message = Message;
+
 // axios 的 默认url
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
 Vue.prototype.$http= axios;
 
-
+//使用 vue-table-with-tree-grid 
+import ZkTable from 'vue-table-with-tree-grid'
+Vue.use(ZkTable)
 
 Vue.config.productionTip = false
 
+//
+var EventBus = new Vue();
+
+Object.defineProperties(Vue.prototype, {
+  $bus: {
+    get: function () {
+      return EventBus
+    }
+  }
+})
 
 axios.interceptors.request.use( config => {
   config.headers.Authorization = window.sessionStorage.getItem("token")
@@ -41,6 +56,12 @@ axios.interceptors.request.use( config => {
     return Promise.reject(err)
   }
 );
+// axios.interceptors.response.use( res => {
+//   if(res.data.meta.status != 200) this.$message.error('获取数据失败')
+//   return res;
+// },err => {
+//   return Promise.reject(err)
+// })
 
 new Vue({
   router,

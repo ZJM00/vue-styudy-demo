@@ -29,7 +29,11 @@ const routes = [
     children: [
       {
         path:'welcome',
-        component: () => import("../components/Welcome.vue")
+        component: () => import("../components/Welcome.vue"),
+        meta: {
+          'upperLevel':'',
+          'title': '首页',
+        },
       },
       {
         path:'users',
@@ -57,7 +61,16 @@ const routes = [
           'upperLevel':'权限管理',
           'title': '角色列表'
         }
-      }
+      },
+      {
+        path:'categories',
+        name: "categories",
+        component: () => import("../components/goods/Categories.vue"),
+        meta: {
+          'upperLevel':'商品管理',
+          'title': '商品分类'
+        }
+      },
     ]
   }
 
