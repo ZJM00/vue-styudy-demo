@@ -35,7 +35,7 @@
                 <el-table-column  label="操作" width="180px">
                     <template v-slot="editUser">
                         <!-- 修改角色按钮 --> 
-                        <el-tooltip class="item" effect="dark" content="角色删除" placement="top" :enterable='false'>
+                        <el-tooltip class="item" effect="dark" content="角色编辑" placement="top" :enterable='false'>
                             <el-button type="primary" icon="el-icon-edit" size='mini' @click="editDialog(editUser.$index)"></el-button>
                         </el-tooltip>
 
@@ -244,7 +244,6 @@ export default {
     },
     created() {
         this.getUsers();
-        //this.selectRoles = this.$store.state.roleList.data;
     },
     methods: {
         async getUsers(){
