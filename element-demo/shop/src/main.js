@@ -35,6 +35,15 @@ Vue.prototype.$http= axios;
 import ZkTable from 'vue-table-with-tree-grid'
 Vue.use(ZkTable)
 
+//引入 echarts
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts;
+
+// 顶部进度条
+import NProgress from "nprogress"
+import "nprogress/nprogress.css"
+ 
+
 Vue.config.productionTip = false
 
 //
@@ -49,19 +58,20 @@ Object.defineProperties(Vue.prototype, {
 })
 
 axios.interceptors.request.use( config => {
-  config.headers.Authorization = window.sessionStorage.getItem("token")
+  config.headers.Authorization = window.sessionStorage.getItem("token");
+  NProgress.start();
   // 最后必须return config
   return config;
 },err => {
     return Promise.reject(err)
   }
 );
-// axios.interceptors.response.use( res => {
-//   if(res.data.meta.status != 200) this.$message.error('获取数据失败')
-//   return res;
-// },err => {
-//   return Promise.reject(err)
-// })
+axios.interceptors.response.use( res => {
+  NProgress.done();
+  return res;
+},err => {
+  return Promise.reject(err)
+})
 
 new Vue({
   router,

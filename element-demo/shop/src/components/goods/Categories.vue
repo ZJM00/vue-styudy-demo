@@ -58,17 +58,22 @@
     </el-dialog>
 
     <!-- 添加分类 -->
-    <el-dialog title="添加分类" :visible.sync="addDiaGood" width="30%" @close='resetAdd'> 
+    <el-dialog title="添加分类" :visible.sync="addDiaGood" width="30%" @close="resetAdd">
       <div class="block">
         <span>分类名称:</span>
         <el-input v-model=" addGoodsName" class="el-bt" clearable></el-input>
       </div>
       <div class="block">
         <span class="demonstration">父类别:</span>
-        <el-cascader ref="elCascade" v-model="addKey" 
-            :options="addCeList" :props="addProps" class="el-bt" 
-            clearable @change='addChange'>
-        </el-cascader>
+        <el-cascader
+          ref="elCascade"
+          v-model="addKey"
+          :options="addCeList"
+          :props="addProps"
+          class="el-bt"
+          clearable
+          @change="addChange"
+        ></el-cascader>
       </div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="addDiaGood = false">取 消</el-button>
@@ -78,6 +83,7 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
 export default {
   data() {
     return {
@@ -138,10 +144,11 @@ export default {
     this.getCategories();
   },
   methods: {
+    ...mapActions({
+          getCe: 'getCategories' 
+    }),
     async getCategories() {
-      let { data: res } = await this.$http.get("categories", {
-        params: this.queryInfo
-      });
+      let res = await this.getCe(this.queryInfo);
       if (res.meta.status != 200) return this.$message.error("获取数据失败");
       this.total = res.data.total;
       this.list = res.data.result;
@@ -235,7 +242,7 @@ export default {
         this.addInfo.cat_name = this.addGoodsName;
         if(this.addGoodsName != '') {
             this.$http.post('categories',this.addInfo).then(res => {
-                console.log(res)
+
                 if(res.data.meta.status!= 201) return this.$message.error('创建类别失败');
                 this.$message.success('创建成功')
                 this.getCategories();
@@ -275,16 +282,15 @@ export default {
 .el-bt {
   width: 200px;
 }
-.block{
-    margin: 10px 0;
-    span{
-        display: inline-block;
-        padding:0 15px ;
-        width: 80px;
-        text-align: right;
-        font-size: 14px;
-        font-weight: 400;
-    }
-  
+.block {
+  margin: 10px 0;
+  span {
+    display: inline-block;
+    padding: 0 15px;
+    width: 80px;
+    text-align: right;
+    font-size: 14px;
+    font-weight: 400;
+  }
 }
 </style>

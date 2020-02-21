@@ -37,14 +37,18 @@
                 <el-main :class="isCollapse||isWidth?'is-bra-active':''">
                      
                     <div class="tag">  <!--tag 导航栏-->
-                        <el-tag  closable :disable-transitions="false" 
-                            v-for='(item,index) in tagRouter' :key="index"
-                            effect="plain" @close=closeTag(index)>
+                        <el-tag  closable  class="el_tag"  v-for='(item,index) in tagRouter' 
+                            :key="index" @click="goRoute(index)"  :disable-transitions=false
+                            :effect="$route.path == item.tagRouter?'dark':'plain'"
+                            @close=closeTag(index) >
                         {{item.name}}
                     </el-tag>
                     </div>
                     <keep-alive>
-                        <router-view />
+                        <transition name="route-ans">
+                            <router-view />
+                        </transition>
+                      
                     </keep-alive>
                    
                 </el-main>
@@ -75,6 +79,9 @@ export default {
         }
     },
     methods: {
+        goRoute(index){
+            this.$router.push(this.tagRouter[index].tagRouter);
+        },
         logout() {
             window.sessionStorage.removeItem("token");
             this.$router.push("/login")
@@ -152,7 +159,7 @@ export default {
 
 }
 </script>
-<style lang="less">
+<style lang="less" >
     .contain{
         height: 100%;
     }
@@ -203,6 +210,7 @@ export default {
         position: fixed;
         left: 0;
         top: 60px;
+        z-index: 999;
         &::after{
             content: '';
             clear: both;
@@ -268,5 +276,32 @@ export default {
     width:calc(~"100% + 136px")!important;
     margin-left: calc(~'200px - 136px');
     transition: all 0.05s;
+}
+.el_tag{
+    font-size: 14px;
+    transition: all 0.4s;
+    &:hover{
+        margin-top: -10px;
+        box-shadow: -1px 3px 3px #48393973;
+    }
+    &:active{
+       color: #000;
+        opacity: 0.7;
+    }
+}
+.route-ans-enter-active {
+    width: 100%;
+    position: absolute;
+  transition: opacity .3s ease;
+}
+.route-ans-leave-active {
+    width: 100%;
+     position: absolute;
+  transition: opacity .2s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.route-ans-enter, .route-ans-leave-to{
+    width: 100%;
+     position: absolute;
+    opacity: 0;
 }
 </style>

@@ -71,6 +71,68 @@ const routes = [
           'title': '商品分类'
         }
       },
+      {
+        path:'params',
+        name: "params",
+        component: () => import("../components/goods/Params.vue"),
+        meta: {
+          'upperLevel':'商品管理',
+          'title': '分类参数'
+        }
+      },
+      {
+        path:'goods',
+        name: "goods",
+        component: () => import("../components/goods/List.vue"),
+        meta: {
+          'upperLevel':'商品管理',
+          'title': '商品列表'
+        },
+      },
+      {
+        path:'add',
+        name: "addgoods",
+        component: () => import("../components/goods/AddGoods.vue"),
+        meta: {
+          'upperLevel':'商品管理',
+          'father': {
+            title:'商品列表',
+            link:"/home/goods"
+          },
+          'title': '添加商品'
+        },
+      },
+      {
+        path:'editor',
+        name: "editorgoods",
+        component: () => import("../components/goods/AddGoods.vue"),
+        meta: {
+          'upperLevel':'商品管理',
+          'father': {
+            title:'商品列表',
+            link:"/home/goods"
+          },
+          'title': '编辑商品'
+        },
+      },
+      {
+        path:'orders',
+        name: "ordersgoods",
+        component: () => import("../components/Orders.vue"),
+        meta: {
+          'upperLevel':'订单管理',
+          'title': '订单列表'
+        },
+      },
+      {
+        path:'reports',
+        name: "reports",
+        component: () => import("../components/Reports.vue"),
+        meta: {
+          'upperLevel':'数据中心',
+          'title': '数据报表'
+        },
+      },
     ]
   }
 

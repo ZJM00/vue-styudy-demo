@@ -117,7 +117,7 @@ export default {
     },
     computed: {
         list() {   
-                return this.$store.state.roleList.data;
+            return this.$store.state.roleList.data;
         },
         meta() {
            return this.$store.getters.getData.meta;
@@ -126,8 +126,7 @@ export default {
 
     beforeUpdate() { 
        if(this.meta.status != 200) return this.$message.error("获取数据失败");
-    },
-  
+    },  
     methods: {
         // 获取权限
         // async getList() {
